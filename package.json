@@ -1,0 +1,31 @@
+{
+  "name": "grunt-connect-devproxy",
+  "version": "0.0.1",
+  "description": "A web server for selective local development",
+  "homepage": "https://github.com/hansoninc/grunt-connect-devproxy",
+  "repository": "hansoninc/grunt-connect-devproxy",
+  "author": {
+    "name": "",
+    "email": "",
+    "url": "https://github.com/hansoninc/"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "keywords": [
+    "grunt",
+    "connect",
+    "development",
+    "proxy"
+  ],
+  "devDependencies": {},
+  "scripts": {},
+  "license": "MIT",
+  "dependencies": {
+    "connect": "^3.4.0",
+    "connect-modrewrite": "^0.8.2",
+    "proxy-middleware": "^0.14.0",
+    "serve-static": "^1.10.0"
+  }
+}

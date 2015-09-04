@@ -38,16 +38,17 @@ module.exports = function(grunt) {
 		}
 
 		// set up URL rewrites
-		if (options.urlRewrites.keys.length ) {
+		if ( Object.keys(options.urlRewrites).length ) {
 			grunt.log.writeln('Setting up URL rewrites: ' + options.urlRewrites);
 			app.use( modRewrite( options.urlRewrites ) );
 		}
 
-		// Serve locally-mapped content
-		for (var i in options.localMappings) {
-			var nextMapping = options.localMappings[i];
-			grunt.log.writeln('Mapping ' +  i + ' to ' + path.join(options.basePath, nextMapping) );
-			app.use( i, serveStatic( path.join(options.basePath, nextMapping) ) );
+		// Set up locally-mapped content paths
+		var localMappings = Object.keys( options.localMappings );
+		for (var i = 0; i < localMappings.length; i++) {
+			var nextMapping = options.localMappings[ localMappings[i] ];
+			grunt.log.writeln('Mapping ' +  localMappings[i] + ' to ' + path.join(options.basePath, nextMapping) );
+			app.use( localMappings[i], serveStatic( path.join(options.basePath, nextMapping) ) );
 		}
 
 		// Proxy all other requests to the dev server.

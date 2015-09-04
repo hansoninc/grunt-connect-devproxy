@@ -19,14 +19,15 @@ grunt.initConfig({
 	devproxy: {
 		options: {
 			basePath: __dirname,
-			port: 3000,
-			localMappings: {
-				'/css/': '/css/'
-			},
+			port: 8000,
 			urlRewrites: [
-				'static/v([0-9]+)/ static/v0/'
+				'favicon.ico imgs/favicon.ico'
 			],
-			remoteURL: 'http://dwyerphilanthropy.com/'
+			localMappings: {
+				'/css/': 'static/css/',
+				'/imgs/': 'static/imgs/'
+			},
+			remoteURL: 'http://yourwebsite.com/'
 		}
 	}
 });

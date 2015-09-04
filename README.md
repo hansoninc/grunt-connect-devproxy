@@ -19,7 +19,7 @@ grunt.initConfig({
 	devproxy: {
 		options: {
 			basePath: __dirname,
-			port: 8000,
+			port: 3000,
 			urlRewrites: [
 				'favicon.ico imgs/favicon.ico'
 			],

@@ -11,11 +11,30 @@ $ npm install --save grunt-connect-devproxy
 
 ## Usage
 
-```js
-var gruntConnectDevproxy = require('grunt-connect-devproxy');
+Configure `grunt-connect-devproxy` in your Gruntfile:
 
-gruntConnectDevproxy('Rainbow');
+### Example configuration:
+```js
+grunt.initConfig({
+	devproxy: {
+		options: {
+			basePath: __dirname,
+			port: 3000,
+			localMappings: {
+				'/css/': '/css/'
+			},
+			urlRewrites: [
+				'static/v([0-9]+)/ static/v0/'
+			],
+			remoteURL: 'http://dwyerphilanthropy.com/'
+		}
+	}
+});
 ```
+
+`localMappings` is an object containing pairs in the format ** remote path: local path **
+ 
+ `urlRewrites` is an array containing valid mod_rewrite formatted rewrite strings. More information: <http://www.sitepoint.com/guide-url-rewriting/>
 
 ## License
 

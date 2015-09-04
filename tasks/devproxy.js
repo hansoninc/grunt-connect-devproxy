@@ -15,37 +15,43 @@ module.exports = function(grunt) {
 	var serveStatic = require('serve-static');
 	var path = require("path");
 
-	var options = this.options({
-		port: 3000,
-		localMappings: {
-			'/static/v0/': '/Static'
-		},
-		remoteURL: 'http://homecenter-dev.hansonoc.com/',
-		urlRewrites: [
-			'static/v([0-9]+)/ static/v0/'
-		]
-	});
-
 	// Start a custom connect server --
 	grunt.registerTask('devproxy', 'Start a proxyable web server.', function() {
+
+		var options = this.options({
+			basePath: __dirname,
+			port: 3000,
+			localMappings: {},
+			remoteURL: null,
+			urlRewrites: [],
+			keepalive: true
+		});
+
 		grunt.log.writeln('Starting web server on port ' + options.port + '.');
 
 		// Initialize connect
 		var app = connect();
 
+		if ( !options.remoteURL ) {
+			grunt.log.error('No Remote URL specified. Quitting!');
+			return;
+		}
+
 		// set up URL rewrites
-		grunt.log.writeln('Setting up URL rewrites:' + options.urlRewrites);
-		app.use( modRewrite( options.urlRewrites ) );
+		if (options.urlRewrites.keys.length ) {
+			grunt.log.writeln('Setting up URL rewrites: ' + options.urlRewrites);
+			app.use( modRewrite( options.urlRewrites ) );
+		}
 
 		// Serve locally-mapped content
-		for (var i in localMappings) {
-			var nextMapping = localMappings[i];
-			grunt.log.writeln('Mapping ' +  i + ' to ' + path.join(__dirname + nextMapping) );
-			app.use( i, serveStatic(__dirname + nextMapping) );
+		for (var i in options.localMappings) {
+			var nextMapping = options.localMappings[i];
+			grunt.log.writeln('Mapping ' +  i + ' to ' + path.join(options.basePath, nextMapping) );
+			app.use( i, serveStatic( path.join(options.basePath, nextMapping) ) );
 		}
 
 		// Proxy all other requests to the dev server.
-		grunt.log.writeln('Proxying all other requests to ' + options.remoteURL);
+		grunt.log.writeln('Proxying requests to ' + options.remoteURL);
 		app.use( '/', proxy( url.parse(options.remoteURL) ) );
 
 		// Ignore certificate errors.
@@ -53,6 +59,11 @@ module.exports = function(grunt) {
 
 		// Create http server and listen on port 3000
 		http.createServer(app).listen(options.port);
+
+		if (options.keepalive === true) {
+			grunt.log.writeln('Waiting forever...');
+			this.async();
+		}
 	});
 
-});
+};

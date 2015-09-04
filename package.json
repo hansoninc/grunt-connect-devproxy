@@ -5,8 +5,8 @@
   "homepage": "https://github.com/hansoninc/grunt-connect-devproxy",
   "repository": "hansoninc/grunt-connect-devproxy",
   "author": {
-    "name": "",
-    "email": "",
+    "name": "Dave Rodriguez",
+    "email": "dave.rodriguez@hansoninc.com",
     "url": "https://github.com/hansoninc/"
   },
   "files": [

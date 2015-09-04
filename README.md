@@ -34,7 +34,7 @@ grunt.initConfig({
 
 `localMappings` is an object containing pairs in the format ** remote path: local path **
  
- `urlRewrites` is an array containing valid mod_rewrite formatted rewrite strings. More information: <http://www.sitepoint.com/guide-url-rewriting/>
+ `urlRewrites` is an array containing valid mod_rewrite formatted rewrite strings. More information: <http://httpd.apache.org/docs/2.0/misc/rewriteguide.html>
 
 ## License
 

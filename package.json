@@ -1,6 +1,6 @@
 {
   "name": "grunt-connect-devproxy",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A web server for selective local development",
   "homepage": "https://github.com/hansoninc/grunt-connect-devproxy",
   "repository": "hansoninc/grunt-connect-devproxy",

@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 	var path = require("path");
 
 	// Start a custom connect server --
-	grunt.registerTask('devproxy', 'Start a proxyable web server.', function() {
+	grunt.registerMultiTask('devproxy', 'Start a proxyable web server.', function() {
 
 		var options = this.options({
 			basePath: __dirname,

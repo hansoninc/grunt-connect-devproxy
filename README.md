@@ -14,17 +14,19 @@ Configure `grunt-connect-devproxy` in your Gruntfile:
 ```js
 grunt.initConfig({
 	devproxy: {
-		options: {
-			basePath: __dirname,
-			port: 3000,
-			urlRewrites: [
-				'favicon.ico imgs/favicon.ico'
-			],
-			localMappings: {
-				'/css/': 'static/css/',
-				'/imgs/': 'static/imgs/'
-			},
-			remoteURL: 'http://yourwebsite.com/'
+		default: {
+			options: {
+				basePath: __dirname,
+				port: 3000,
+				urlRewrites: [
+					'favicon.ico imgs/favicon.ico'
+				],
+				localMappings: {
+					'/css/': 'static/css/',
+					'/imgs/': 'static/imgs/'
+				},
+				remoteURL: 'http://yourwebsite.com/'
+			}
 		}
 	}
 });

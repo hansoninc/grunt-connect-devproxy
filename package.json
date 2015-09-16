@@ -10,7 +10,7 @@
     "url": "https://github.com/hansoninc/"
   },
   "files": [
-    "lib"
+    "tasks"
   ],
   "main": "tasks/devproxy.js",
   "keywords": [
